@@ -6,10 +6,10 @@ const status = document.getElementById('status');
 let signer;
 let contract;
 
-// 👉 Reemplaza con tu dirección real del contrato en Sepolia
-const contractAddress = "0xXXXXXXXXXXXX..."; // <- pon aquí la dirección real
+// Dirección del contrato en Sepolia
+const contractAddress = "0x4CC4968105fd5fA485578b247387EE2BfbB4b6a0";
 
-// 👉 ABI mínimo para interactuar con entregarCertificado
+// ABI mínimo para interactuar con entregarCertificado
 const contractABI = [
   "function entregarCertificado(address to, uint256 id, uint256 cantidad) public"
 ];
@@ -54,4 +54,3 @@ mintForm.addEventListener('submit', async (e) => {
     status.textContent = "❌ Error al mintear. Revisa la consola.";
   }
 });
-
