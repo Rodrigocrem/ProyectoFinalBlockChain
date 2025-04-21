@@ -40,17 +40,21 @@ mintForm.addEventListener('submit', async (e) => {
   const cantidad = parseInt(document.getElementById('amount').value);
 
   if (!contract) {
+    status.className = "status-error";
     status.textContent = "Conecta Metamask primero.";
     return;
   }
 
   try {
+    status.className = "";
+    status.textContent = "⏳ Transacción enviada...";
     const tx = await contract.entregarCertificado(to, id, cantidad);
-    status.textContent = "Transacción enviada...";
     await tx.wait();
+    status.className = "status-success";
     status.textContent = `✅ Certificado emitido correctamente (Tx: ${tx.hash})`;
   } catch (err) {
     console.error(err);
+    status.className = "status-error";
     status.textContent = "❌ Error al mintear. Revisa la consola.";
   }
 });
