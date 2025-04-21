@@ -47,6 +47,10 @@ button {
   transition: all 0.3s ease;
 }
 
+form button {
+  margin-top: 19px;
+}
+
 button:hover {
   background-color: #fff;
   color: #000;
