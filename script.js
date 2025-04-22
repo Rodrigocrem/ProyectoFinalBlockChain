@@ -57,8 +57,8 @@ mintForm.addEventListener('submit', async (e) => {
     status.className = "status-success";
     status.textContent = `✅ Certificado emitido correctamente (Tx: ${tx.hash})`;
 
-    // Actualizar balance después de mintear
-    getTokenBalance();
+    // Obtener el balance después de la transacción
+    await getTokenBalance();
   } catch (err) {
     console.error(err);
     status.className = "status-error";
@@ -71,7 +71,7 @@ const getTokenBalance = async () => {
   if (contract) {
     try {
       const address = await signer.getAddress();
-      const id = 0; // Puedes cambiar el ID según el token que quieras consultar
+      const id = 0; // ID del token a consultar (por ejemplo, ID 0 para "Taller educativo")
       const balance = await contract.balanceOf(address, id);
       balanceDisplay.textContent = `Tienes ${balance.toString()} tokens de tipo ${id}`;
     } catch (error) {
