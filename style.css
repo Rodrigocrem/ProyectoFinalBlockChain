@@ -89,7 +89,6 @@ select:focus {
   color: #ccc;
 }
 
-/* ✅ Feedback visual animado */
 .status-success {
   color: #4caf50;
   animation: fadeIn 0.4s ease-in-out;
