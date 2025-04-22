@@ -63,23 +63,23 @@ Sigue los pasos a continuación para instalar y ejecutar el proyecto en tu máqu
 
 Clona este repositorio:
 
-bash
-git clone https://github.com/Rodrigocrem/ProyectoFinalBlockChain.git
-cd ProyectoFinalBlockChain
+  bash
+  git clone https://github.com/Rodrigocrem/ProyectoFinalBlockChain.git
+  cd ProyectoFinalBlockChain
+  
 Instala las dependencias:
-
-bash
-npm install
+  bash
+  npm install
+  
 Compila y migra los contratos inteligentes:
-
-bash
-truffle compile
-truffle migrate
+  bash
+  truffle compile
+  truffle migrate
+  
 Inicia el servidor local:
-
-bash
-npm start
-Abre tu navegador en http://localhost:3000 para visualizar la aplicación.
+  bash
+  npm start
+  Abre tu navegador en http://localhost:3000 para visualizar la aplicación.
 
 🧪 Pruebas
 Para ejecutar las pruebas de los contratos inteligentes, ejecuta el siguiente comando:
