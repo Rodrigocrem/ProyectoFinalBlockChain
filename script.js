@@ -2,6 +2,7 @@ const connectButton = document.getElementById('connectButton');
 const userAddressDisplay = document.getElementById('userAddress');
 const mintForm = document.getElementById('mintForm');
 const status = document.getElementById('status');
+const balanceDisplay = document.getElementById('balance');
 
 let signer;
 let contract;
@@ -11,7 +12,8 @@ const contractAddress = "0x4CC4968105fd5fA485578b247387EE2BfbB4b6a0";
 
 // ABI mínimo para interactuar con entregarCertificado
 const contractABI = [
-  "function entregarCertificado(address to, uint256 id, uint256 cantidad) public"
+  "function entregarCertificado(address to, uint256 id, uint256 cantidad) public",
+  "function balanceOf(address account, uint256 id) public view returns (uint256)"
 ];
 
 // Conectar con Metamask
@@ -23,6 +25,9 @@ connectButton.addEventListener('click', async () => {
       signer = provider.getSigner();
       contract = new ethers.Contract(contractAddress, contractABI, signer);
       userAddressDisplay.textContent = `Conectado: ${accounts[0]}`;
+
+      // Obtener el balance después de conectar
+      getTokenBalance();
     } catch (err) {
       console.error(err);
       userAddressDisplay.textContent = '❌ Error al conectar con Metamask';
@@ -40,7 +45,6 @@ mintForm.addEventListener('submit', async (e) => {
   const cantidad = parseInt(document.getElementById('amount').value);
 
   if (!contract) {
-    status.className = "status-error";
     status.textContent = "Conecta Metamask primero.";
     return;
   }
@@ -52,9 +56,29 @@ mintForm.addEventListener('submit', async (e) => {
     await tx.wait();
     status.className = "status-success";
     status.textContent = `✅ Certificado emitido correctamente (Tx: ${tx.hash})`;
+
+    // Actualizar balance después de mintear
+    getTokenBalance();
   } catch (err) {
     console.error(err);
     status.className = "status-error";
     status.textContent = "❌ Error al mintear. Revisa la consola.";
   }
 });
+
+// Función para obtener el balance de un token
+const getTokenBalance = async () => {
+  if (contract) {
+    try {
+      const address = await signer.getAddress();
+      const id = 0; // Puedes cambiar el ID según el token que quieras consultar
+      const balance = await contract.balanceOf(address, id);
+      balanceDisplay.textContent = `Tienes ${balance.toString()} tokens de tipo ${id}`;
+    } catch (error) {
+      console.error('Error al obtener el balance:', error);
+      balanceDisplay.textContent = 'Error al obtener el balance.';
+    }
+  } else {
+    balanceDisplay.textContent = 'Conecta Metamask primero.';
+  }
+};
