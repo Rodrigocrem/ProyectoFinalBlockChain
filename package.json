@@ -1,0 +1,23 @@
+{
+  "name": "ProyectoFinalBlockChain",
+  "version": "1.0.0",
+  "description": "Proyecto para gestionar certificados en blockchain con ERC-1155",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx hardhat test",
+    "compile": "npx hardhat compile",
+    "deploy": "npx hardhat run scripts/deploy.js --network sepolia"
+  },
+  "dependencies": {
+    "ethers": "^5.7.2",
+    "openzeppelin-solidity": "^4.3.0"
+  },
+  "devDependencies": {
+    "hardhat": "^2.8.4",
+    "@nomiclabs/hardhat-ethers": "^2.0.1",
+    "chai": "^4.3.4",
+    "@openzeppelin/contracts": "^4.3.0"
+  },
+  "author": "Rodrigo Crem",
+  "license": "MIT"
+}

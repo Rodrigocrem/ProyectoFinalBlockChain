@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certificados ONG</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="https://rodrigocrem.github.io/ProyectoFinalBlockChain/logo.png" alt="Logo ONG" class="logo" />
+      <h1>Certificados ONG</h1>
+      <button id="connectButton">Conectar con Metamask</button>
+    </header>
+
+    <section class="wallet-section">
+      <p id="userAddress">No conectado</p>
+    </section>
+
+    <section class="mint-section">
+      <h2>Emitir certificado</h2>
+      <form id="mintForm">
+        <label for="recipient">Dirección del destinatario</label>
+        <input type="text" id="recipient" placeholder="0x...">
+
+        <label for="tokenId">Tipo de certificado (ID)</label>
+        <select id="tokenId">
+          <option value="0">Taller educativo</option>
+          <option value="1">Jornada de limpieza</option>
+          <option value="2">Campaña de reforestación</option>
+          <option value="3">Coordinador de evento</option>
+        </select>
+
+        <label for="amount">Cantidad</label>
+        <input type="number" id="amount" value="1" min="1">
+
+        <button type="submit">Mintear</button>
+      </form>
+      <p id="status"></p>
+    </section>
+
+    <!-- Sección para mostrar el balance de tokens -->
+    <section class="balance-section">
+      <h2>Tu balance de tokens</h2>
+      <p id="balance">Cargando...</p>
+    </section>
+  </div>
+</body>
+</html>
