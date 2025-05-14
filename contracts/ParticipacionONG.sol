@@ -13,7 +13,7 @@ contract ParticipacionONG is ERC1155, Ownable {
     event TokenEntregado(address indexed to, uint256 id, uint256 cantidad);
 
     // Constructor con definición del owner y URI base
-    constructor() ERC1155("https://rodrigocrem.github.io/ProyectoFinalBlockChain/{id}.json") Ownable(msg.sender) {
+    constructor() ERC1155("https://rodrigocrem.github.io/ProyectoFinalBlockChain/{id}.json") Ownable() {
         nombresTokens[0] = "Taller educativo";
         nombresTokens[1] = "Jornada de limpieza";
         nombresTokens[2] = "Campana de reforestacion";
@@ -22,9 +22,8 @@ contract ParticipacionONG is ERC1155, Ownable {
 
     // Función para entregar certificados (solo el owner puede)
     function entregarCertificado(address to, uint256 id, uint256 cantidad) public onlyOwner {
-        uint256 cantidadConDecimales = cantidad * 10**18;  // Multiplicamos para decimales
-        _mint(to, id, cantidadConDecimales, "");
-        emit TokenEntregado(to, id, cantidadConDecimales);
+        _mint(to, id, cantidad, "");  // Mint sin fraccionamiento, se usan enteros
+        emit TokenEntregado(to, id, cantidad);
     }
 
     // Permitir actualizar el URI si se cambia el host de los metadatos
