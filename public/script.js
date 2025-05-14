@@ -83,7 +83,12 @@ const getTokenBalance = async () => {
       const address = await signer.getAddress();
       const id = 0; // ID del token a consultar (por ejemplo, ID 0 para "Taller educativo")
       const balance = await contract.balanceOf(address, id);
-      balanceDisplay.textContent = `Tienes ${balance / (10 ** 18)} tokens de tipo ${id}`;
+
+      // Convertir el balance de la unidad más pequeña (con decimales) a tokens reales
+      const balanceInTokens = balance / (10 ** 18);  // Dividir por 10^18 para convertir a tokens reales
+
+      // Mostrar el balance con dos decimales
+      balanceDisplay.textContent = `Tienes ${balanceInTokens.toFixed(4)} tokens de tipo ${id}`;
     } catch (error) {
       console.error('Error al obtener el balance:', error);
       balanceDisplay.textContent = 'Error al obtener el balance.';
